@@ -16,7 +16,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView }
           <div className="flex justify-between h-20 items-center py-4">
             <div 
               className="flex items-center cursor-pointer gap-3 group" 
-              onClick={() => setView('LANDING')}
+              onClick={() => setView('HOME')}
             >
               <div className="bg-white/10 p-2.5 rounded-xl group-hover:bg-white/20 transition-colors shadow-inner">
                  <Bus className="h-6 w-6 text-brand-300" />
@@ -29,9 +29,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView }
             
             <nav className="hidden sm:flex space-x-1">
               <button
-                onClick={() => setView('LANDING')}
+                onClick={() => setView('HOME')}
                 className={`flex items-center px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                  currentView === 'LANDING' 
+                  currentView === 'HOME' 
                   ? 'bg-white text-brand-900 shadow-md' 
                   : 'text-brand-100 hover:bg-white/10 hover:text-white'
                 }`}
@@ -85,8 +85,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, setView }
       {/* Mobile Bottom Navigation */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 flex justify-around p-2 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] no-print">
          <button 
-           onClick={() => setView('LANDING')}
-           className={`flex flex-col items-center justify-center p-2 rounded-lg w-full ${currentView === 'LANDING' ? 'text-brand-600 bg-brand-50' : 'text-gray-400'}`}
+           onClick={() => setView('HOME')}
+           className={`flex flex-col items-center justify-center p-2 rounded-lg w-full ${currentView === 'HOME' ? 'text-brand-600 bg-brand-50' : 'text-gray-400'}`}
          >
             <Home className="w-6 h-6 mb-1" />
             <span className="text-[10px] font-medium">Home</span>

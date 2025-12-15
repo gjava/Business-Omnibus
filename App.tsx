@@ -27,7 +27,7 @@ const DEFAULT_BOOKINGS: Booking[] = [
 ];
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<ViewState>('LANDING');
+  const [currentView, setCurrentView] = useState<ViewState>('HOME');
   
   // Initialize bookings from LocalStorage if available, otherwise use defaults
   const [bookings, setBookings] = useState<Booking[]>(() => {
@@ -69,7 +69,7 @@ export default function App() {
 
   const renderContent = () => {
     switch(currentView) {
-      case 'LANDING':
+      case 'HOME':
         return <LandingPage setView={setCurrentView} />;
       case 'BOOKING':
         return <BookingFlow onBookingComplete={handleBookingComplete} />;
