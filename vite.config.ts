@@ -4,8 +4,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Business-Omnibus/dist', // <--- THIS IS CRITICAL
-  build : {
-    outDir: 'docs'// Repertoire de deploiement.
-  }
+  base: '/Business-Omnibus/', // <--- THIS IS CRITICAL ./dist
+  //<--! build : {
+   // outDir: 'docs'// Repertoire de deploiement.
+  //}-->
 });
