@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Layout } from './components/Layout';
+import { LandingPage } from './components/LandingPage';
 import { BookingFlow } from './components/BookingFlow';
 import { TicketView } from './components/TicketView';
 import { AdminDashboard } from './components/AdminDashboard';
@@ -8,7 +9,7 @@ import { Booking, BookingStatus, ViewState } from './types';
 // Initial dummy data for demonstration
 const DEFAULT_BOOKINGS: Booking[] = [
   {
-    id: 'bk_demo_1',
+    id: 'BK82910',
     routeId: 'rt_001', // Paris -> Lyon
     passenger: { firstName: 'Alice', lastName: 'Dubois', email: 'alice@example.com' },
     status: BookingStatus.CONFIRMED,
@@ -16,7 +17,7 @@ const DEFAULT_BOOKINGS: Booking[] = [
     seatNumber: 12
   },
   {
-    id: 'bk_demo_2',
+    id: 'BK10922',
     routeId: 'rt_001',
     passenger: { firstName: 'Bob', lastName: 'Martin', email: 'bob@example.com' },
     status: BookingStatus.CHECKED_IN,
@@ -26,7 +27,7 @@ const DEFAULT_BOOKINGS: Booking[] = [
 ];
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<ViewState>('HOME');
+  const [currentView, setCurrentView] = useState<ViewState>('LANDING');
   
   // Initialize bookings from LocalStorage if available, otherwise use defaults
   const [bookings, setBookings] = useState<Booking[]>(() => {
@@ -68,24 +69,26 @@ export default function App() {
 
   const renderContent = () => {
     switch(currentView) {
-      case 'HOME':
+      case 'LANDING':
+        return <LandingPage setView={setCurrentView} />;
       case 'BOOKING':
         return <BookingFlow onBookingComplete={handleBookingComplete} />;
       case 'TICKET':
         return <TicketView bookings={bookings} />;
       case 'ADMIN':
         return (
-          <div>
-            <div className="flex justify-end mb-4">
-              <button onClick={resetData} className="text-xs text-red-500 underline hover:text-red-700">
-                Reset Demo Data
+          <div className="animate-fade-in">
+            <div className="flex justify-between items-center mb-8">
+               <h1 className="text-2xl font-bold text-gray-900">Admin Portal</h1>
+               <button onClick={resetData} className="px-4 py-2 text-sm text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors border border-red-200">
+                Reset System Data
               </button>
             </div>
             <AdminDashboard bookings={bookings} updateBookingStatus={updateBookingStatus} />
           </div>
         );
       default:
-        return <BookingFlow onBookingComplete={handleBookingComplete} />;
+        return <LandingPage setView={setCurrentView} />;
     }
   };
 
